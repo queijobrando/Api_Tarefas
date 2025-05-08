@@ -9,6 +9,7 @@ import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -37,7 +38,7 @@ public class TarefaController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<DadosListagemTarefa>> listarTarefas(Pageable paginacao){
+    public ResponseEntity<Page<DadosListagemTarefa>> listarTarefas(@PageableDefault(size= 10, sort = {"nome"}) Pageable paginacao){
          return ResponseEntity.ok(tarefaService.listarTarefas(paginacao));
     }
 
