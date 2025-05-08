@@ -1,6 +1,7 @@
 package com.tarefas.api.Api.Tarefas.controller;
 
 import com.tarefas.api.Api.Tarefas.dto.DadosDetalhamentoTarefa;
+import com.tarefas.api.Api.Tarefas.dto.DadosListagemTarefa;
 import com.tarefas.api.Api.Tarefas.dto.TarefaDto;
 import com.tarefas.api.Api.Tarefas.entity.Tarefa;
 import com.tarefas.api.Api.Tarefas.service.TarefaService;
@@ -36,8 +37,15 @@ public class TarefaController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<DadosDetalhamentoTarefa>> listarTarefas(Pageable paginacao){
+    public ResponseEntity<Page<DadosListagemTarefa>> listarTarefas(Pageable paginacao){
          return ResponseEntity.ok(tarefaService.listarTarefas(paginacao));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<DadosDetalhamentoTarefa> visualizarTarefa(@PathVariable Long id){
+        var tarefa = tarefaService.carregarTarefa(id);
+
+        return ResponseEntity.ok(new DadosDetalhamentoTarefa(tarefa));
     }
 
     @DeleteMapping("/{id}")

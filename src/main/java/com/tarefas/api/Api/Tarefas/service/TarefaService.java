@@ -1,6 +1,7 @@
 package com.tarefas.api.Api.Tarefas.service;
 
 import com.tarefas.api.Api.Tarefas.dto.DadosDetalhamentoTarefa;
+import com.tarefas.api.Api.Tarefas.dto.DadosListagemTarefa;
 import com.tarefas.api.Api.Tarefas.dto.TarefaDto;
 import com.tarefas.api.Api.Tarefas.entity.Tarefa;
 import com.tarefas.api.Api.Tarefas.repository.TarefaRepository;
@@ -41,7 +42,7 @@ public class TarefaService {
      .toList() coleta os resultados e transforma em uma nova lista
      */
 
-    public Page<DadosDetalhamentoTarefa> listarTarefas(Pageable paginacao){
-        return tarefaRepository.findAll(paginacao).map(DadosDetalhamentoTarefa::new);
+    public Page<DadosListagemTarefa> listarTarefas(Pageable paginacao){
+        return tarefaRepository.findAll(paginacao).map(DadosListagemTarefa::new);
     }
 }
