@@ -1,16 +1,13 @@
 package com.tarefas.api.Api.Tarefas.service;
 
-import com.tarefas.api.Api.Tarefas.dto.DadosDetalhamentoTarefa;
 import com.tarefas.api.Api.Tarefas.dto.DadosListagemTarefa;
-import com.tarefas.api.Api.Tarefas.dto.TarefaDto;
+import com.tarefas.api.Api.Tarefas.dto.DadosCadastrarTarefa;
 import com.tarefas.api.Api.Tarefas.entity.Tarefa;
 import com.tarefas.api.Api.Tarefas.repository.TarefaRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class TarefaService {
@@ -22,7 +19,7 @@ public class TarefaService {
     }
 
     @Transactional
-    public Tarefa cadastrarTarefa(TarefaDto dados){
+    public Tarefa cadastrarTarefa(DadosCadastrarTarefa dados){
         Tarefa tarefa = new Tarefa(dados);
 
         return tarefaRepository.save(tarefa);

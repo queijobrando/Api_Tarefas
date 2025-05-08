@@ -1,8 +1,9 @@
 package com.tarefas.api.Api.Tarefas.controller;
 
+import com.tarefas.api.Api.Tarefas.dto.DadosAtualizarTarefa;
 import com.tarefas.api.Api.Tarefas.dto.DadosDetalhamentoTarefa;
 import com.tarefas.api.Api.Tarefas.dto.DadosListagemTarefa;
-import com.tarefas.api.Api.Tarefas.dto.TarefaDto;
+import com.tarefas.api.Api.Tarefas.dto.DadosCadastrarTarefa;
 import com.tarefas.api.Api.Tarefas.entity.Tarefa;
 import com.tarefas.api.Api.Tarefas.service.TarefaService;
 import jakarta.transaction.Transactional;
@@ -13,8 +14,6 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("tarefa")
@@ -27,7 +26,7 @@ public class TarefaController {
     }
 
     @PostMapping
-    public ResponseEntity<DadosDetalhamentoTarefa> cadastrarTarefa(@RequestBody @Valid TarefaDto dados,
+    public ResponseEntity<DadosDetalhamentoTarefa> cadastrarTarefa(@RequestBody @Valid DadosCadastrarTarefa dados,
                                                                    UriComponentsBuilder uriComponentsBuilder){
         Tarefa tarefa = tarefaService.cadastrarTarefa(dados);
 
@@ -45,6 +44,16 @@ public class TarefaController {
     @GetMapping("/{id}")
     public ResponseEntity<DadosDetalhamentoTarefa> visualizarTarefa(@PathVariable Long id){
         var tarefa = tarefaService.carregarTarefa(id);
+
+        return ResponseEntity.ok(new DadosDetalhamentoTarefa(tarefa));
+    }
+
+    @PutMapping("/{id}")
+    @Transactional
+    public ResponseEntity<DadosDetalhamentoTarefa> editarTarefa(@PathVariable Long id, @RequestBody DadosAtualizarTarefa dados){
+        var tarefa = tarefaService.carregarTarefa(id);
+
+        tarefa.atualizarTarefa(dados);
 
         return ResponseEntity.ok(new DadosDetalhamentoTarefa(tarefa));
     }

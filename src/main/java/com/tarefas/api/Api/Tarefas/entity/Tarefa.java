@@ -1,6 +1,7 @@
 package com.tarefas.api.Api.Tarefas.entity;
 
-import com.tarefas.api.Api.Tarefas.dto.TarefaDto;
+import com.tarefas.api.Api.Tarefas.dto.DadosAtualizarTarefa;
+import com.tarefas.api.Api.Tarefas.dto.DadosCadastrarTarefa;
 import com.tarefas.api.Api.Tarefas.enun.Prioridade;
 import jakarta.persistence.*;
 import lombok.*;
@@ -26,7 +27,7 @@ public class Tarefa {
     @Enumerated(EnumType.STRING)
     private Prioridade prioridade;
 
-    public Tarefa(TarefaDto dados){
+    public Tarefa(DadosCadastrarTarefa dados){
         this.nome = dados.nome();
         this.descricao = dados.descricao();
         this.prioridade = dados.prioridade();
@@ -35,5 +36,11 @@ public class Tarefa {
 
     public void excluir(){
         this.realizado = true;
+    }
+
+    public void atualizarTarefa(DadosAtualizarTarefa dados){
+        this.nome = dados.nome();
+        this.descricao = dados.descricao();
+        this.prioridade = dados.prioridade();
     }
 }
