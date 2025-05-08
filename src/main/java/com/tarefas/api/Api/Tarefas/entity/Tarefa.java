@@ -23,6 +23,7 @@ public class Tarefa {
     @Setter
     private boolean realizado;
 
+    @Enumerated(EnumType.STRING)
     private Prioridade prioridade;
 
     public Tarefa(TarefaDto dados){

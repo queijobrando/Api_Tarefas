@@ -5,6 +5,7 @@ import com.tarefas.api.Api.Tarefas.dto.TarefaDto;
 import com.tarefas.api.Api.Tarefas.entity.Tarefa;
 import com.tarefas.api.Api.Tarefas.service.TarefaService;
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -22,7 +23,7 @@ public class TarefaController {
     }
 
     @PostMapping
-    public ResponseEntity<DadosDetalhamentoTarefa> cadastrarTarefa(@RequestBody TarefaDto dados,
+    public ResponseEntity<DadosDetalhamentoTarefa> cadastrarTarefa(@RequestBody @Valid TarefaDto dados,
                                                                    UriComponentsBuilder uriComponentsBuilder){
         Tarefa tarefa = tarefaService.cadastrarTarefa(dados);
 
