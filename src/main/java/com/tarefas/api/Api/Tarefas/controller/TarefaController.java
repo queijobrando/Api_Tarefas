@@ -4,6 +4,7 @@ import com.tarefas.api.Api.Tarefas.dto.DadosDetalhamentoTarefa;
 import com.tarefas.api.Api.Tarefas.dto.TarefaDto;
 import com.tarefas.api.Api.Tarefas.entity.Tarefa;
 import com.tarefas.api.Api.Tarefas.service.TarefaService;
+import jakarta.transaction.Transactional;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -35,5 +36,15 @@ public class TarefaController {
     public ResponseEntity<List<DadosDetalhamentoTarefa>> listarTarefas(){
          List<DadosDetalhamentoTarefa> tarefas =  tarefaService.listarTarefas();
          return ResponseEntity.ok(tarefas);
+    }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public ResponseEntity<DadosDetalhamentoTarefa> concluirTarefa(@PathVariable Long id){
+        var tarefa = tarefaService.carregarTarefa(id);
+
+        tarefa.excluir();
+
+        return ResponseEntity.ok(new DadosDetalhamentoTarefa(tarefa));
     }
 }

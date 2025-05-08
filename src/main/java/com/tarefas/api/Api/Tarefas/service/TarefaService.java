@@ -25,6 +25,10 @@ public class TarefaService {
         return tarefaRepository.save(tarefa);
     }
 
+    public Tarefa carregarTarefa(Long id){
+        return tarefaRepository.getReferenceById(id);
+    }
+
     public List<DadosDetalhamentoTarefa> listarTarefas(){
         return  tarefaRepository.findAll().stream().map(DadosDetalhamentoTarefa::new).toList();
     }

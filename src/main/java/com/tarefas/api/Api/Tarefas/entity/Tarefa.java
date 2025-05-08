@@ -31,4 +31,8 @@ public class Tarefa {
         this.prioridade = dados.prioridade();
         this.setRealizado(false);
     }
+
+    public void excluir(){
+        this.realizado = true;
+    }
 }
