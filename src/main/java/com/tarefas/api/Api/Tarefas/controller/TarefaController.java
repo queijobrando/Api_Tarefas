@@ -5,11 +5,10 @@ import com.tarefas.api.Api.Tarefas.dto.TarefaDto;
 import com.tarefas.api.Api.Tarefas.entity.Tarefa;
 import com.tarefas.api.Api.Tarefas.service.TarefaService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("tarefa")
@@ -30,5 +29,11 @@ public class TarefaController {
 
         return ResponseEntity.created(uri).body(new DadosDetalhamentoTarefa(tarefa));
 
+    }
+
+    @GetMapping
+    public ResponseEntity<List<DadosDetalhamentoTarefa>> listarTarefas(){
+         List<DadosDetalhamentoTarefa> tarefas =  tarefaService.listarTarefas();
+         return ResponseEntity.ok(tarefas);
     }
 }
