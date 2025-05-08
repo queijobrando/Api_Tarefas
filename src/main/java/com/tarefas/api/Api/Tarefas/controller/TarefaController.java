@@ -6,6 +6,8 @@ import com.tarefas.api.Api.Tarefas.entity.Tarefa;
 import com.tarefas.api.Api.Tarefas.service.TarefaService;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -34,9 +36,8 @@ public class TarefaController {
     }
 
     @GetMapping
-    public ResponseEntity<List<DadosDetalhamentoTarefa>> listarTarefas(){
-         List<DadosDetalhamentoTarefa> tarefas =  tarefaService.listarTarefas();
-         return ResponseEntity.ok(tarefas);
+    public ResponseEntity<Page<DadosDetalhamentoTarefa>> listarTarefas(Pageable paginacao){
+         return ResponseEntity.ok(tarefaService.listarTarefas(paginacao));
     }
 
     @DeleteMapping("/{id}")

@@ -5,6 +5,8 @@ import com.tarefas.api.Api.Tarefas.dto.TarefaDto;
 import com.tarefas.api.Api.Tarefas.entity.Tarefa;
 import com.tarefas.api.Api.Tarefas.repository.TarefaRepository;
 import jakarta.transaction.Transactional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,11 +31,17 @@ public class TarefaService {
         return tarefaRepository.getReferenceById(id);
     }
 
+    /*
     public List<DadosDetalhamentoTarefa> listarTarefas(){
         return  tarefaRepository.findAll().stream().map(DadosDetalhamentoTarefa::new).toList();
     }
 
-    // .stream() Transforma a lista em uma sequencia de elementos(quero trabalhar item por item, em cadeia)
-    // .map() Transforma cada elemento do stream, ou seja, para cada Tarefa na lista, crie um novo DadosDetalhamentoTarefa(tarefa)
-    // .toList() coleta os resultados e transforma em uma nova lista
+     .stream() Transforma a lista em uma sequencia de elementos(quero trabalhar item por item, em cadeia)
+     .map() Transforma cada elemento do stream, ou seja, para cada Tarefa na lista, crie um novo DadosDetalhamentoTarefa(tarefa)
+     .toList() coleta os resultados e transforma em uma nova lista
+     */
+
+    public Page<DadosDetalhamentoTarefa> listarTarefas(Pageable paginacao){
+        return tarefaRepository.findAll(paginacao).map(DadosDetalhamentoTarefa::new);
+    }
 }
