@@ -6,8 +6,11 @@ import com.tarefas.api.Api.Tarefas.dto.DadosListagemTarefa;
 import com.tarefas.api.Api.Tarefas.dto.DadosCadastrarTarefa;
 import com.tarefas.api.Api.Tarefas.entity.Tarefa;
 import com.tarefas.api.Api.Tarefas.service.TarefaService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
+import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -25,6 +28,7 @@ public class TarefaController {
         this.tarefaService = tarefaService;
     }
 
+    @Operation(summary = "Adicionar uma nova tarefa", description = "Metodo que cadastra uma nova tarefa", tags = "Gerenciar Tarefas")
     @PostMapping
     public ResponseEntity<DadosDetalhamentoTarefa> cadastrarTarefa(@RequestBody @Valid DadosCadastrarTarefa dados,
                                                                    UriComponentsBuilder uriComponentsBuilder){
@@ -36,11 +40,13 @@ public class TarefaController {
 
     }
 
+    @Operation(summary = "Listar tarefas cadastradas", description = "Metodo que retorna 10 tarefas por página", tags = "Gerenciar Tarefas")
     @GetMapping
-    public ResponseEntity<Page<DadosListagemTarefa>> listarTarefas(@PageableDefault(size= 10, sort = {"nome"}) Pageable paginacao){
+    public ResponseEntity<Page<DadosListagemTarefa>> listarTarefas(@ParameterObject @PageableDefault(size= 10, sort = {"nome"}) Pageable paginacao){
          return ResponseEntity.ok(tarefaService.listarTarefas(paginacao));
     }
 
+    @Operation(summary = "Visualizar Tarefa", description = "Metodo mostra dados da tarefa pelo ID", tags = "Gerenciar Tarefas")
     @GetMapping("/{id}")
     public ResponseEntity<DadosDetalhamentoTarefa> visualizarTarefa(@PathVariable Long id){
         var tarefa = tarefaService.carregarTarefa(id);
@@ -48,6 +54,7 @@ public class TarefaController {
         return ResponseEntity.ok(new DadosDetalhamentoTarefa(tarefa));
     }
 
+    @Operation(summary = "Editar Tarefa", description = "Metodo que edita as informações da tarefa", tags = "Gerenciar Tarefas")
     @PutMapping("/{id}")
     @Transactional
     public ResponseEntity<DadosDetalhamentoTarefa> editarTarefa(@PathVariable Long id, @RequestBody DadosAtualizarTarefa dados){
@@ -58,6 +65,7 @@ public class TarefaController {
         return ResponseEntity.ok(new DadosDetalhamentoTarefa(tarefa));
     }
 
+    @Operation(summary = "Concluir Tarefa", description = "Metodo que conclui a tarefa", tags = "Gerenciar Tarefas")
     @DeleteMapping("/{id}")
     @Transactional
     public ResponseEntity<DadosDetalhamentoTarefa> concluirTarefa(@PathVariable Long id){

@@ -7,11 +7,11 @@ public record DadosDetalhamentoTarefa(Long id,
                                       String nome,
                                       String descricao,
                                       Prioridade prioridade,
-                                      String realizado) {
+                                      boolean realizado) {
 
     public DadosDetalhamentoTarefa(Tarefa tarefa){
         this(tarefa.getId(), tarefa.getNome(), tarefa.getDescricao(), tarefa.getPrioridade(),
-                tarefa.isRealizado() ? "Sim" : "Não"); // condição ? valor_se_verdadeiro : valor_se_falso;
+                tarefa.isRealizado()); // condição ? valor_se_verdadeiro : valor_se_falso;
 
     }
 }

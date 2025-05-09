@@ -6,11 +6,11 @@ import com.tarefas.api.Api.Tarefas.enun.Prioridade;
 public record DadosListagemTarefa(String nome,
                                   String descricao,
                                   Prioridade prioridade,
-                                  String realizado) {
+                                  boolean realizado) {
 
     public DadosListagemTarefa(Tarefa tarefa) {
         this(tarefa.getNome(), tarefa.getDescricao(), tarefa.getPrioridade(),
-                tarefa.isRealizado() ? "Sim" : "Não"); // condição ? valor_se_verdadeiro : valor_se_falso;
+                tarefa.isRealizado()); // condição ? valor_se_verdadeiro : valor_se_falso;
 
     }
 }
