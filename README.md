@@ -5,13 +5,6 @@ Uma API Java com Spring Boot para gerenciamento de tarefas.
 ![Spring Boot](https://img.shields.io/badge/Spring--Boot-3.4.5-brightgreen)
 ![MySQL](https://img.shields.io/badge/MySQL-Connector-lightgrey)
 
-## 📑 Índice
-- [Sobre](#sobre)
-- [Instalação](#instalação)
-- [Estrutura do Projeto](#estrutura-do-projeto)
-- [Funcionalidades](#-funcionalidades)
-- [Clonando o Projeto](#-clonando-o-projeto)
-
 ## 📖 Sobre
 
 A **API de Tarefas** é uma aplicação backend desenvolvida em Java com Spring Boot, projetada para gerenciar tarefas de forma simples e eficiente. Possui endpoints REST para cadastro, listagem paginada, detalhamento e atualização de tarefas, com documentação gerada automaticamente via Swagger/OpenAPI.
