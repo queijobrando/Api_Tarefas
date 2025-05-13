@@ -1,4 +1,4 @@
-package com.tarefas.api.Api.Tarefas.infra.swagger;
+package com.tarefas.api.Api.Tarefas.config.swagger;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;

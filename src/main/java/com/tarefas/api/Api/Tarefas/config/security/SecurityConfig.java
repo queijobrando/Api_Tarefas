@@ -1,4 +1,4 @@
-package com.tarefas.api.Api.Tarefas.infra.security;
+package com.tarefas.api.Api.Tarefas.config.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

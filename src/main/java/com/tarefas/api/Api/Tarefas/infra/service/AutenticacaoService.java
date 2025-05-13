@@ -1,7 +1,6 @@
-package com.tarefas.api.Api.Tarefas.service;
+package com.tarefas.api.Api.Tarefas.infra.service;
 
-import com.tarefas.api.Api.Tarefas.repository.UsuarioRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.tarefas.api.Api.Tarefas.infra.repository.UsuarioRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

@@ -1,7 +1,7 @@
-package com.tarefas.api.Api.Tarefas.dto;
+package com.tarefas.api.Api.Tarefas.api.dto;
 
-import com.tarefas.api.Api.Tarefas.entity.Tarefa;
-import com.tarefas.api.Api.Tarefas.enun.Prioridade;
+import com.tarefas.api.Api.Tarefas.domain.model.Tarefa;
+import com.tarefas.api.Api.Tarefas.domain.model.enun.Prioridade;
 
 public record DadosListagemTarefa(String nome,
                                   String descricao,

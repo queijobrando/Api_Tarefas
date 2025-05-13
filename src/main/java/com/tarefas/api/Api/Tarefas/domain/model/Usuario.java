@@ -1,4 +1,4 @@
-package com.tarefas.api.Api.Tarefas.entity;
+package com.tarefas.api.Api.Tarefas.domain.model;
 
 
 import jakarta.persistence.*;

@@ -1,9 +1,9 @@
-package com.tarefas.api.Api.Tarefas.service;
+package com.tarefas.api.Api.Tarefas.domain.service;
 
-import com.tarefas.api.Api.Tarefas.dto.DadosListagemTarefa;
-import com.tarefas.api.Api.Tarefas.dto.DadosCadastrarTarefa;
-import com.tarefas.api.Api.Tarefas.entity.Tarefa;
-import com.tarefas.api.Api.Tarefas.repository.TarefaRepository;
+import com.tarefas.api.Api.Tarefas.api.dto.DadosListagemTarefa;
+import com.tarefas.api.Api.Tarefas.api.dto.DadosCadastrarTarefa;
+import com.tarefas.api.Api.Tarefas.domain.model.Tarefa;
+import com.tarefas.api.Api.Tarefas.infra.repository.TarefaRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

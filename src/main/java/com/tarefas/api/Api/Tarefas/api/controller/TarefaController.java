@@ -1,13 +1,12 @@
-package com.tarefas.api.Api.Tarefas.controller;
+package com.tarefas.api.Api.Tarefas.api.controller;
 
-import com.tarefas.api.Api.Tarefas.dto.DadosAtualizarTarefa;
-import com.tarefas.api.Api.Tarefas.dto.DadosDetalhamentoTarefa;
-import com.tarefas.api.Api.Tarefas.dto.DadosListagemTarefa;
-import com.tarefas.api.Api.Tarefas.dto.DadosCadastrarTarefa;
-import com.tarefas.api.Api.Tarefas.entity.Tarefa;
-import com.tarefas.api.Api.Tarefas.service.TarefaService;
+import com.tarefas.api.Api.Tarefas.api.dto.DadosAtualizarTarefa;
+import com.tarefas.api.Api.Tarefas.api.dto.DadosDetalhamentoTarefa;
+import com.tarefas.api.Api.Tarefas.api.dto.DadosListagemTarefa;
+import com.tarefas.api.Api.Tarefas.api.dto.DadosCadastrarTarefa;
+import com.tarefas.api.Api.Tarefas.domain.model.Tarefa;
+import com.tarefas.api.Api.Tarefas.domain.service.TarefaService;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springdoc.core.annotations.ParameterObject;

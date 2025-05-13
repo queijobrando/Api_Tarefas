@@ -1,8 +1,8 @@
-package com.tarefas.api.Api.Tarefas.entity;
+package com.tarefas.api.Api.Tarefas.domain.model;
 
-import com.tarefas.api.Api.Tarefas.dto.DadosAtualizarTarefa;
-import com.tarefas.api.Api.Tarefas.dto.DadosCadastrarTarefa;
-import com.tarefas.api.Api.Tarefas.enun.Prioridade;
+import com.tarefas.api.Api.Tarefas.api.dto.DadosAtualizarTarefa;
+import com.tarefas.api.Api.Tarefas.api.dto.DadosCadastrarTarefa;
+import com.tarefas.api.Api.Tarefas.domain.model.enun.Prioridade;
 import jakarta.persistence.*;
 import lombok.*;
 

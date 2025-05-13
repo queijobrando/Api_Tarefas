@@ -1,4 +1,4 @@
-package com.tarefas.api.Api.Tarefas.dto;
+package com.tarefas.api.Api.Tarefas.api.dto;
 
 import jakarta.validation.constraints.NotBlank;
 

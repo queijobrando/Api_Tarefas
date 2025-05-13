@@ -1,4 +1,4 @@
-package com.tarefas.api.Api.Tarefas.infra.exception;
+package com.tarefas.api.Api.Tarefas.config.exception;
 
 import io.swagger.v3.oas.annotations.Hidden;
 import jakarta.persistence.EntityNotFoundException;

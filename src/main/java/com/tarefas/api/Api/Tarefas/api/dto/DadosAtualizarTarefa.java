@@ -1,6 +1,6 @@
-package com.tarefas.api.Api.Tarefas.dto;
+package com.tarefas.api.Api.Tarefas.api.dto;
 
-import com.tarefas.api.Api.Tarefas.enun.Prioridade;
+import com.tarefas.api.Api.Tarefas.domain.model.enun.Prioridade;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
