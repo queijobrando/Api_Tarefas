@@ -8,10 +8,4 @@ public record DadosDetalhamentoTarefa(Long id,
                                       String descricao,
                                       Prioridade prioridade,
                                       boolean realizado) {
-
-    public DadosDetalhamentoTarefa(Tarefa tarefa){
-        this(tarefa.getId(), tarefa.getNome(), tarefa.getDescricao(), tarefa.getPrioridade(),
-                tarefa.isRealizado()); // condição ? valor_se_verdadeiro : valor_se_falso;
-
-    }
 }

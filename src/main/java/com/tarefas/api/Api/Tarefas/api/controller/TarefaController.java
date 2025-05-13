@@ -4,6 +4,7 @@ import com.tarefas.api.Api.Tarefas.api.dto.DadosAtualizarTarefa;
 import com.tarefas.api.Api.Tarefas.api.dto.DadosDetalhamentoTarefa;
 import com.tarefas.api.Api.Tarefas.api.dto.DadosListagemTarefa;
 import com.tarefas.api.Api.Tarefas.api.dto.DadosCadastrarTarefa;
+import com.tarefas.api.Api.Tarefas.api.mapper.TarefaMapper;
 import com.tarefas.api.Api.Tarefas.domain.model.Tarefa;
 import com.tarefas.api.Api.Tarefas.domain.service.TarefaService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -22,9 +23,11 @@ import org.springframework.web.util.UriComponentsBuilder;
 public class TarefaController {
 
     private final TarefaService tarefaService;
+    private final TarefaMapper tarefaMapper;
 
-    public TarefaController(TarefaService tarefaService) {
+    public TarefaController(TarefaService tarefaService, TarefaMapper tarefaMapper) {
         this.tarefaService = tarefaService;
+        this.tarefaMapper = tarefaMapper;
     }
 
     @Operation(summary = "Adicionar uma nova tarefa", description = "Metodo que cadastra uma nova tarefa", tags = "Gerenciar Tarefas")
@@ -35,7 +38,7 @@ public class TarefaController {
 
         var uri = uriComponentsBuilder.path("tarefa/{id}").buildAndExpand(tarefa.getId()).toUri();
 
-        return ResponseEntity.created(uri).body(new DadosDetalhamentoTarefa(tarefa));
+        return ResponseEntity.created(uri).body(tarefaMapper.tarefaToDetalhamento(tarefa));
 
     }
 
@@ -50,18 +53,16 @@ public class TarefaController {
     public ResponseEntity<DadosDetalhamentoTarefa> visualizarTarefa(@PathVariable Long id){
         var tarefa = tarefaService.carregarTarefa(id);
 
-        return ResponseEntity.ok(new DadosDetalhamentoTarefa(tarefa));
+        return ResponseEntity.ok(tarefaMapper.tarefaToDetalhamento(tarefa));
     }
 
     @Operation(summary = "Editar Tarefa", description = "Metodo que edita as informações da tarefa", tags = "Gerenciar Tarefas")
     @PutMapping("/{id}")
     @Transactional
     public ResponseEntity<DadosDetalhamentoTarefa> editarTarefa(@PathVariable Long id, @RequestBody DadosAtualizarTarefa dados){
-        var tarefa = tarefaService.carregarTarefa(id);
+        var tarefa = tarefaService.atualizarTarefa(id, dados);
 
-        tarefa.atualizarTarefa(dados);
-
-        return ResponseEntity.ok(new DadosDetalhamentoTarefa(tarefa));
+        return ResponseEntity.ok(tarefaMapper.tarefaToDetalhamento(tarefa));
     }
 
     @Operation(summary = "Concluir Tarefa", description = "Metodo que conclui a tarefa", tags = "Gerenciar Tarefas")
@@ -72,6 +73,6 @@ public class TarefaController {
 
         tarefa.excluir();
 
-        return ResponseEntity.ok(new DadosDetalhamentoTarefa(tarefa));
+        return ResponseEntity.ok(tarefaMapper.tarefaToDetalhamento(tarefa));
     }
 }
