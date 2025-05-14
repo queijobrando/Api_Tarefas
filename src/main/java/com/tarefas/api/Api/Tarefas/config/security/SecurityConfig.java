@@ -24,18 +24,29 @@ public class SecurityConfig {
         this.securityFilter = securityFilter;
     }
 
+
+    // NÃO BLOQUEIA O H2 E NEM O SWAGGER
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .csrf(csrf -> csrf.disable())
+                .headers(headers -> headers.frameOptions(frame -> frame.disable())) // Libera H2
                 .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> {
-                    auth.requestMatchers("/login").permitAll();
+                    auth.requestMatchers(
+                            "/login",
+                            "/h2-console/**",
+                            "/v3/api-docs/**",
+                            "/swagger-ui/**",
+                            "/swagger-ui.html"
+                    ).permitAll(); // Libera login, H2 e Swagger
                     auth.anyRequest().authenticated();
                 })
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
+
+
 
     // csrf -> disable - Desabilita proteção Cross-Site Request Forgery (Token JWT já protege)
     // SessionCreationPolicy.STATELESS -> Permite requisições agora.

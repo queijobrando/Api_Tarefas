@@ -46,7 +46,7 @@ public class SecurityFilter extends OncePerRequestFilter {
         var authorizationHeader = request.getHeader("Authorization"); //Recupera o header da requisição
 
         if (authorizationHeader != null){
-            return authorizationHeader.replace("Bearer", "");
+            return authorizationHeader.replace("Bearer", "").trim();
         }
 
         return null ;

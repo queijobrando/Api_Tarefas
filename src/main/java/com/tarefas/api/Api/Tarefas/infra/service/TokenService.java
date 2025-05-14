@@ -19,12 +19,15 @@ public class TokenService {
     @Value("${api.security.token.secret}")
     private String secret;
 
+    //Constante para o ISSUER
+    private static final String ISSUER = "API Tarefas";
+
     // Gerar Token com propriedades
     public String gerarToken(Usuario usuario){
         try {
             var algoritimo = Algorithm.HMAC256(secret);
             return JWT.create()
-                    .withIssuer("API Tarefas")
+                    .withIssuer(ISSUER)
                     .withSubject(usuario.getLogin())
                     .withClaim("id", usuario.getId())
                     .withExpiresAt(dataExpiracao()) // duração do token
@@ -39,7 +42,7 @@ public class TokenService {
         try {
             var algoritmo = Algorithm.HMAC256(secret);
             return JWT.require(algoritmo)
-                    .withIssuer("API Tarefas")
+                    .withIssuer(ISSUER)
                     .build()
                     .verify(tokenJWT)
                     .getSubject();
