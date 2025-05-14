@@ -1,4 +1,4 @@
-package com.tarefas.api.Api.Tarefas.infra.service;
+package com.tarefas.api.Api.Tarefas.config.security.service;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;

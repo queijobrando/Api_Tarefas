@@ -1,4 +1,4 @@
-package com.tarefas.api.Api.Tarefas.infra.service;
+package com.tarefas.api.Api.Tarefas.config.security.service;
 
 import com.tarefas.api.Api.Tarefas.infra.repository.UsuarioRepository;
 import org.springframework.security.core.userdetails.UserDetails;

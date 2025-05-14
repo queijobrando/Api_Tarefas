@@ -1,7 +1,7 @@
-package com.tarefas.api.Api.Tarefas.infra.filter;
+package com.tarefas.api.Api.Tarefas.config.security.filter;
 
 import com.tarefas.api.Api.Tarefas.infra.repository.UsuarioRepository;
-import com.tarefas.api.Api.Tarefas.infra.service.TokenService;
+import com.tarefas.api.Api.Tarefas.config.security.service.TokenService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

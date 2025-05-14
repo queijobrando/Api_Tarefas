@@ -4,7 +4,7 @@ package com.tarefas.api.Api.Tarefas.api.controller;
 import com.tarefas.api.Api.Tarefas.api.dto.DadosAutenticacao;
 import com.tarefas.api.Api.Tarefas.domain.model.Usuario;
 import com.tarefas.api.Api.Tarefas.api.dto.security.DadosRetornoToken;
-import com.tarefas.api.Api.Tarefas.infra.service.TokenService;
+import com.tarefas.api.Api.Tarefas.config.security.service.TokenService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
