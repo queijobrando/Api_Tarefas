@@ -14,29 +14,42 @@ A **API de Tarefas** é uma aplicação backend desenvolvida em Java com Spring 
 - ✅ Cadastro de novas tarefas  
 - 📄 Listagem paginada de tarefas (10 por página)
 - 🔍 Detalhamento de tarefa por ID  
-- ✏️ Atualização de dados da tarefa  
+- ✏️ Atualização de dados da tarefa 
+- 👤 Cadastro e login de usuários
+- 🔐 Autenticação JWT
 - ❌ Tratamento de erros e mensagens de validação  
 - 📖 Documentação automática com Swagger
 
 ## 🧩 Estrutura do Projeto
 
 ### 📦 DTOs
-- **DadosCadastrarTarefa** – dados obrigatórios para cadastro
-- **DadosListagemTarefa** – visualização simplificada das tarefas
-- **DadosDetalhamentoTarefa** – retorno completo com todos os dados
-- **DadosAtualizarTarefa** – payload para atualização de tarefa
+- **Tarefa**
+  - `DadosCadastrarTarefa` – dados obrigatórios para cadastro
+  - `DadosListagemTarefa` – visualização simplificada
+  - `DadosDetalhamentoTarefa` – retorno completo
+  - `DadosAtualizarTarefa` – payload para atualização
+
+- **Usuário**
+  - `DadosCadastroUsuario` – para cadastro de novos usuários
+  - `DadosAutenticacao` – para login
+  - `DadosTokenJWT` – resposta ao login
 
 ### 🧠 Service
-- **TarefaService** – regra de negócio para cadastro, listagem e detalhamento de tarefas
+- **TarefaService** – regra de negócio para tarefas, experiência e nível
+- **UsuarioService** – autenticação, cadastro e perfil do usuário
 
 ### 🏷️ Entity
 - **Tarefa** – entidade principal com campos como `nome`, `descrição`, `prioridade` e `realizado`
+- **Usuario** – usuario, senha
 
 ### 📚 Repository
 - **TarefaRepository** – interface JPA para acesso ao banco de dados
+- **UsuarioRepository** – interface JPA para usuários
 
 ### 🛡️ Infra
-- **TratadorDeErros** – trata exceções como `404 Not Found` e `400 Bad Request`
+- **TratadorDeErros** – tratamento de exceções (404, 400 etc)
+- **TokenService** – geração e validação de JWT
+- **SecurityFilter** – autenticação via token nos endpoints
 
 ### 🎯 Controller
 - **TarefaController** – expõe os endpoints REST da API
@@ -45,15 +58,20 @@ A **API de Tarefas** é uma aplicação backend desenvolvida em Java com Spring 
   - `@PutMapping`: Atualiza tarefa
   - `@GetMapping("/{id}")`: Detalha uma tarefa por ID
 
+- **UsuarioController**
+  - `@PostMapping("/login")` – Login do usuário
+
 ## ⚙️ Tecnologias
 
-- Java 21  
-- Spring Boot 3.4.5  
-- Spring Data JPA  
-- Hibernate  
-- MySQL  
-- Lombok  
-- Swagger (springdoc-openapi)  
+- Java 21
+- Spring Boot 3.4.5
+- Spring Security
+- Spring Data JPA
+- Hibernate
+- MySQL
+- Lombok
+- Swagger (springdoc-openapi)
+- JWT (Autenticação) 
 
 ## 💻 Instalação
 
@@ -75,3 +93,8 @@ spring.jpa.show-sql=true
 
 ## 📖 Documentação Swagger
 `http://localhost:8080/swagger-ui.html`
+
+## 🔐 Segurança
+A autenticação é baseada em JWT. Após o login, o token deve ser enviado no cabeçalho das requisições:
+
+`Authorization: Bearer SEU_TOKEN_AQUI`
